@@ -49,8 +49,10 @@
         max-width: 100%; /* Подстраивает изображение под ширину */
         height: auto;
         transform: translate(-100%, -100%);
+      }
+      .animation-ship-1 {
         animation: slide-in 7s ease forwards;
-        animation-delay: 10s;
+        /* animation-delay: 10s; */
       }
 
       #episode_story img {
@@ -60,15 +62,17 @@
         height: auto;
       }
 
-
       .nav-links {
         display: flex;
         flex-direction: row;
+        justify-content: center;
         gap: 3rem;
         margin-top: 1rem;
         opacity: 0;
+      }
+      .animation-links-1 {
         animation: fade-in 1.5s ease forwards;
-        animation-delay: 17s;
+        /* animation-delay: 17s; */
       }
 
       .nav-links a {
@@ -156,23 +160,53 @@
         background-color: red;
       }
 
-      #story_content{
+      #story_content {
         width: 50%;
         font-family: "Jedi_Outline";
         color: white;
         text-decoration: none;
         font-size: 1.5rem;
         padding: 1rem 1rem;
+      }
 
+      .hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
 
+      @keyframes fadeIn1 {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut1 {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .animation-2 {
+        animation: fadeIn1 5s forwards;
+      }
+
+      .animation-3 {
+        animation: fadeOut1 5s forwards;
       }
     </style>
   </head>
   <body>
     <button class="close-button" aria-label="Close" id="close_overlay"></button>
     <header class="animated-header" id="header">
-      <img src="starship.png" alt="Header Image" />
-      <div class="nav-links">
+      <img src="starship.png" alt="Header Image" id="header-image" />
+      <div class="nav-links" id="main-nav-links">
         <div class="dropdown">
           <a href="#" class="nav-link">Episodes</a>
           <div class="dropdown-content">
@@ -195,7 +229,7 @@
         </div>
       </div>
     </header>
-  
+
     <script type="module" src="./src/main.js"></script>
     <script>
       document
@@ -207,6 +241,10 @@
             dropdownMenu.classList.toggle("show");
           });
         });
+      document.getElementById("header-image").classList.add("animation-ship-1");
+      document
+        .getElementById("main-nav-links")
+        .classList.add("animation-links-1");
     </script>
   </body>
 </html>

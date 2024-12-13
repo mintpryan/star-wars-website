@@ -90,3 +90,7 @@ export function getSceneSizeAtDepth(camera, depth) {
 
     return { width, height };
 }
+
+
+
+

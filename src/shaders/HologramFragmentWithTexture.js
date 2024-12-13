@@ -9,14 +9,14 @@ export default /*glsl*/ `
             vec2 uv = vUv;
 
     // Добавление искажения на основе времени и шума
-    float distortion =  0.05;
+    float distortion =  0.002;
     uv.x += distortion;
 
     // Выборка цвета из текстуры с учётом искажённых координат
     vec4 textureColor = texture2D(uTexture, uv);
 
     // Градиент для создания светового эффекта
-    float gradient = smoothstep(0.0, 0.1, uv.y);
+    float gradient = smoothstep(0.0, 0.06, uv.y);
 
     // Генерация горизонтальных полосок
     float stripes = sin((uv.y * 1000.0) + time * 2.0) * 0.1 + 0.5;

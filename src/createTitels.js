@@ -2,13 +2,27 @@ import * as THREE from 'three';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 const loader = new FontLoader();
+
+function loadFont(url) {
+    return new Promise((resolve, reject) => {
+        loader.load(
+            url,
+            (font) => resolve(font),  // Успешная загрузка
+            undefined,                // Прогресс (необязательно)
+            (error) => reject(error)  // Ошибка загрузки
+        );
+    });
+}
+
 export function createTitles(scene) {
     let titles = [];
     loader.load('/fonts/star_wars.json', function (font) {
         const lines = ['STAR', 'WARS'];
         const lineHeight = 1;
 
+
         const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, transparent: true, opacity: 1 });
+
 
 
         lines.forEach((line, index) => {
@@ -79,9 +93,11 @@ export function createTitles(scene) {
 }
 
 
-export function createEpisodeTitle(text, font_path, position, color, size, parent) {
-    loader.load('/fonts/star_wars.json', function (font) {
+export async function createEpisodeTitle(text, font_path, position, color, size) {
+    let textMesh;
 
+    try {
+        const font = await loadFont(font_path);
         const textMaterial = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 1 });
 
         const textGeometry = new TextGeometry(text, {
@@ -91,21 +107,24 @@ export function createEpisodeTitle(text, font_path, position, color, size, paren
             curveSegments: 12,
             bevelEnabled: false,
         });
-
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textMesh = new THREE.Mesh(textGeometry, textMaterial);
         textMesh.position.set(position.x, position.y, position.z);
 
-        parent.add(textMesh)
-
-    });
+    } catch (error) {
+        console.error('Error: ', error);
+    }
+    return textMesh
 }
 
-export function createEpisodeDescription(lines, font_path, position, color, size, parent) {
+export async function createEpisodeDescription(lines, font_path, position, color, size) {
+    let textMeshes = [];
 
-    loader.load(font_path, function (font) {
+    try {
+        const font = await loadFont(font_path);
         const lineHeight = 0.2;
 
         const textMaterial = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 1 });
+
 
 
         lines.forEach((line, index) => {
@@ -119,9 +138,13 @@ export function createEpisodeDescription(lines, font_path, position, color, size
 
             const textMesh = new THREE.Mesh(textGeometry, textMaterial);
             textMesh.position.set(position.x, position.y - index * lineHeight, position.z);
-            parent.add(textMesh);
 
+            textMeshes.push(textMesh)
         });
 
-    });
-}
+    } catch (error) {
+        console.error('Error: ', error);
+    }
+
+    return textMeshes
+} 
