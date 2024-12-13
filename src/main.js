@@ -21,7 +21,7 @@ document.body.appendChild(renderer.domElement);
 
 const mainGroup = new THREE.Group()
 const episodeGroup = new THREE.Group()
-mainGroup.visible = false
+episodeGroup.visible = false
 scene.add(mainGroup)
 scene.add(episodeGroup)
 createBackground(renderer, scene, camera)
