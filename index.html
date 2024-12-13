@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars Intro Titles</title>
+    <style>
+      @font-face {
+        font-family: "Jedi_Outline";
+        src: url("fonts/Starjout.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "StoryFont";
+        src: url("fonts/Starjout.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+        color: yellow;
+      }
+      canvas {
+        display: block;
+      }
+
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 20rem;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        z-index: 10;
+      }
+
+      .animated-header img {
+        width: 100%;
+        max-width: 100%; /* Подстраивает изображение под ширину */
+        height: auto;
+        transform: translate(-100%, -100%);
+        animation: slide-in 7s ease forwards;
+        /* animation-delay: 10s; */
+      }
+
+      #episode_story img {
+        position: absolute;
+        width: 50%;
+        max-width: 100%;
+        height: auto;
+      }
+
+
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        margin-top: 1rem;
+        opacity: 0;
+        animation: fade-in 1.5s ease forwards;
+        /* animation-delay: 17s; */
+      }
+
+      .nav-links a {
+        font-family: "Jedi_Outline";
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        padding: 1rem 1rem;
+        transition: background-color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: white;
+        text-decoration: underline;
+      }
+      @keyframes slide-in {
+        to {
+          transform: translate(0, 0);
+        }
+      }
+      @keyframes fade-in {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        font-size: 1rem;
+        min-width: 13rem;
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .close-button {
+        top: 1%;
+        left: 95%;
+        display: none;
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .close-button::before,
+      .close-button::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 2px;
+        background-color: white;
+        transform-origin: center;
+      }
+
+      .close-button::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      .close-button::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      .close-button:hover::before,
+      .close-button:hover::after {
+        background-color: red;
+      }
+
+      #story_content{
+        width: 50%;
+        font-family: "Jedi_Outline";
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        padding: 1rem 1rem;
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <button class="close-button" aria-label="Close" id="close_overlay"></button>
+    <header class="animated-header" id="header">
+      <img src="starship.png" alt="Header Image" />
+      <div class="nav-links">
+        <div class="dropdown">
+          <a href="#" class="nav-link">Episodes</a>
+          <div class="dropdown-content">
+            <a href="#" id="episode_1" class="story">Episode i</a>
+            <a href="#" id="episode_2" class="story">Episode ii</a>
+            <a href="#" id="episode_3" class="story">Episode iii</a>
+            <a href="#" id="episode_4" class="story">Episode iv</a>
+            <a href="#" id="episode_5" class="story">Episode v</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="nav-link">Cast</a>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="nav-link">Awards</a>
+        </div>
+
+        <div class="dropdown">
+          <a href="#" class="nav-link">Arts</a>
+        </div>
+      </div>
+    </header>
+  
+    <script type="module" src="./src/main.js"></script>
+    <script>
+      document
+        .querySelectorAll(".nav-item.dropdown > .nav-link")
+        .forEach((dropdownLink) => {
+          dropdownLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            const dropdownMenu = dropdownLink.nextElementSibling;
+            dropdownMenu.classList.toggle("show");
+          });
+        });
+    </script>
+  </body>
+</html>
