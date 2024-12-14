@@ -46,8 +46,8 @@ createBackground(renderer, scene, camera)
 const titles = createTitles(mainGroup)
 let uniforms = {
   time: { value: 0.0 },
-  color_1:{value: 0.3 },
-  color_2:{value: 0.7 }
+  color_1: { value: 0.3 },
+  color_2: { value: 0.7 }
 };
 
 const planeGeometryOverlayGeometry = new THREE.PlaneGeometry(100, 100);
@@ -85,7 +85,9 @@ window.addEventListener('resize', () => {
 });
 
 document.querySelectorAll(".story").forEach((link) => {
+  
   link.addEventListener('click', () => {
+
     const episode = episodes_meshes[link.id]
     hideHeader()
     episode.images.forEach(i => {
@@ -104,6 +106,7 @@ document.querySelectorAll(".story").forEach((link) => {
     document.getElementById("main-nav-links").classList.remove('animation-3');
     document.getElementById("header-image").classList.remove('animation-3');
     document.getElementById("logo-image").classList.remove('animation-3');
+    document.getElementById('header').style.pointerEvents = 'none'
   })
 });
 
@@ -115,20 +118,19 @@ document.getElementById("quiz").addEventListener('click', () => {
   switchGroup(quizGroup);
   document.getElementById('close_overlay').style.display = 'block'
   document
-    .getElementById("episode-text").style.display = 'block'
-  document
-    .getElementById("episode-content").innerHTML += episodes_text[link.id].story
-  document
-    .getElementById("episode-title").textContent = episodes_text[link.id].title
+    .getElementById("quiz-text").style.display = 'flex'
+  document.getElementById("quiz-text").classList.add('animation-2')
   document.getElementById('header').style.display = 'none'
   document.getElementById("main-nav-links").classList.remove('animation-3');
   document.getElementById("header-image").classList.remove('animation-3');
   document.getElementById("logo-image").classList.remove('animation-3');
+  document.getElementById('header').style.pointerEvents = 'none'
 })
 
 document.getElementById('close_overlay').addEventListener('click', (e) => {
   episodeGroup.clear()
   episodeGroup.visible = false
+  quizGroup.visible = false
   mainGroup.visible = true
   currentGroup = mainGroup
   document.getElementById('header').style.display = 'flex'
@@ -140,8 +142,10 @@ document.getElementById('close_overlay').addEventListener('click', (e) => {
   document.getElementById('close_overlay').style.display = 'none'
   document
     .getElementById("episode-text").style.display = 'none'
-  document
-    .getElementById("episode-content").innerHTML = ""
+      document
+    .getElementById("quiz-text").style.display = 'none'
+  
+  document.getElementById('header').style.pointerEvents = 'auto'
 
 })
 
@@ -239,16 +243,6 @@ function hideHeader() {
 
 
 // hideHeader()
-//   createQuiz(quizGroup)
-//   switchGroup(quizGroup);
-//   document.getElementById('close_overlay').style.display = 'block'
-//   document
-//     .getElementById("episode-text").style.display = 'block'
-//   document
-//     .getElementById("episode-content").innerHTML += episodes_text[link.id].story
-//   document
-//     .getElementById("episode-title").textContent = episodes_text[link.id].title
-//   document.getElementById('header').style.display = 'none'
-//   document.getElementById("main-nav-links").classList.remove('animation-3');
-//   document.getElementById("header-image").classList.remove('animation-3');
-//   document.getElementById("logo-image").classList.remove('animation-3');
+// createQuiz(quizGroup)
+// switchGroup(quizGroup);
+// document.getElementById('header').style.pointerEvents = 'none'

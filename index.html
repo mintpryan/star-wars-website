@@ -76,19 +76,37 @@
         </div>
       </div>
     </header>
-
+<div id ="all">
     <div id="episode-text">
       <div id="episode-title"></div>
       <div id="episode-content" class="typing-effect"> </div>
     </div>
 
     <div id="quiz-text">
-      <div id="quiz-title" class="typing-effect">
+      <div id="quiz-title" class="animation-2">
         Hmmm… Young one, a challenge for your mind, I offer.</br>
         A quiz of knowledge, in the galaxy far, far away.</br>
         Test your wisdom, will you? The stories of the Jedi, the Sith, and the Skywalkers await you.</div>
-      <div id="quiz-content" class="typing-effect">TEST</div>
+      <div class="quiz-content" id="quiz-content-start" >
+        <button class="quiz-button" id="quiz-start">LET'S START</button>
+      </div>
+      
+      <div class="quiz-content " id="quiz-game" class="animation-2">
+        <div id="question"></div>
+        <div class="button-grid">
+          <button class="quiz-button choose" id="answer_1"></button>
+          <button class="quiz-button choose" id="answer_2"></button>
+          <button class="quiz-button choose" id="answer_3"></button>
+          <button class="quiz-button choose" id="answer_4"></button>
+        </div>
+        
+      </div>
+      <div class="quiz-content" id="quiz-content-end" >
+        <div id = "score"></div>
+        <button class="quiz-button" id="quiz-restart">RESTART</button>
+      </div>
     </div>
+  </div>
 
     <script type="module" src="./src/main.js"></script>
 
