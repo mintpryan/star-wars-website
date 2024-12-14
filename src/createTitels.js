@@ -7,7 +7,7 @@ function loadFont(url) {
     return new Promise((resolve, reject) => {
         loader.load(
             url,
-            (font) => resolve(font),      
+            (font) => resolve(font),
             (error) => reject(error)
         );
     });
@@ -23,6 +23,10 @@ export function createTitles(scene) {
         const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, transparent: true, opacity: 1 });
 
 
+        let clock = new THREE.Clock();
+        let deltaTime = 0;
+        let totalElapsedTime = 0;
+
 
         lines.forEach((line, index) => {
             const textGeometry = new TextGeometry(line, {
@@ -37,7 +41,11 @@ export function createTitles(scene) {
             textMesh.position.set(-2, -index * lineHeight, 0);
             titles.push(textMesh)
             textMesh.animate = () => {
-                textMesh.position.z -= 0.05;
+
+                deltaTime = clock.getDelta();
+                totalElapsedTime += deltaTime;
+
+                textMesh.position.z = - totalElapsedTime * 2;
                 if (textMesh.position.z < -30)
                     textMesh.material.opacity = textMesh.material.opacity - 0.02
 
@@ -65,18 +73,29 @@ export function createTitles(scene) {
                 });
 
                 const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-                textMesh.rotation.x = -Math.PI / 4;
-                textMesh.position.set(-6, -index * lineHeight - 2, -2);
-                textMesh.animate = () => {
-                    if (textMesh.position.z > -4) {
-                        textMesh.material.opacity = textMesh.material.opacity + 0.01
+                textMesh.rotation.x = -Math.PI / 2.5;
+                textMesh.position.set(-6, -index * lineHeight / 3 - 3, index * lineHeight + 2);
 
+                let clock = new THREE.Clock();
+                let deltaTime = 0;
+                let totalElapsedTime = 0;
+                textMesh.animate = () => {
+                    deltaTime = clock.getDelta();
+                    totalElapsedTime += deltaTime;
+                    if (textMesh.position.z > -3) {
+                        textMesh.material.opacity = textMesh.material.opacity + 0.02
+
+                    } else {
+                        textMesh.material.opacity = textMesh.material.opacity - 0.02
                     }
+
                     if (textMesh.position.z > -20) {
-                        textMesh.position.z -= 0.02;
+                        textMesh.position.z -= totalElapsedTime * 0.004;
                     }
+
                     setTimeout(() => {
                         textMesh.material.opacity = textMesh.material.opacity - 0.02
+                        
                     }, 11000)
 
 

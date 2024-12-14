@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Star Wars Intro Titles</title>
+    <link
+      rel="preload"
+      href="/src/styles/main.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/styles/main.css" /></noscript>
+    <link
+      rel="preload"
+      href="/src/styles/header.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/styles/header.css" /></noscript>
     <style>
       @font-face {
         font-family: "Jedi_Outline";
@@ -17,7 +31,12 @@
         font-weight: normal;
         font-style: normal;
       }
-
+      @font-face {
+        font-family: "QuizFont";
+        src: url("fonts/RebellionItalic.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
       body {
         margin: 0;
         overflow: hidden;
@@ -27,218 +46,12 @@
       canvas {
         display: block;
       }
-
-      header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 20rem;
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 1rem;
-        z-index: 10;
-      }
-
-      .animated-header img {
-        width: 100%;
-        max-width: 100%; /* Подстраивает изображение под ширину */
-        height: auto;
-        transform: translate(-100%, -100%);
-      }
-      .animation-ship-1 {
-        animation: slide-in 7s ease forwards;
-        animation-delay: 10s;
-      }
-
-      #episode_story img {
-        position: absolute;
-        width: 50%;
-        max-width: 100%;
-        height: auto;
-      }
-
-      .nav-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 3rem;
-        margin-top: 1rem;
-        opacity: 0;
-      }
-      .animation-links-1 {
-        animation: fade-in 1.5s ease forwards;
-        animation-delay: 17s;
-      }
-
-      .nav-links a {
-        font-family: "Jedi_Outline";
-        color: white;
-        text-decoration: none;
-        font-size: 1.5rem;
-        padding: 1rem 1rem;
-        transition: background-color 0.3s;
-      }
-
-      .nav-links a:hover {
-        color: white;
-        text-decoration: underline;
-      }
-      @keyframes slide-in {
-        to {
-          transform: translate(0, 0);
-        }
-      }
-      @keyframes fade-in {
-        to {
-          opacity: 1;
-        }
-      }
-
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        font-size: 1rem;
-        min-width: 13rem;
-        z-index: 1;
-      }
-
-      .dropdown-content a {
-        padding: 0.5rem 1.2rem;
-        font-size: 1rem;
-        text-decoration: none;
-        display: block;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      .close-button {
-        top: 1%;
-        left: 95%;
-        display: none;
-        width: 3rem;
-        height: 3rem;
-        position: absolute;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-      }
-
-      .close-button::before,
-      .close-button::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 24px;
-        height: 2px;
-        background-color: white;
-        transform-origin: center;
-      }
-
-      .close-button::before {
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-
-      .close-button::after {
-        transform: translate(-50%, -50%) rotate(-45deg);
-      }
-
-      .close-button:hover::before,
-      .close-button:hover::after {
-        background-color: red;
-      }
-
-
-
-      .hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-
-      @keyframes fadeIn1 {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes fadeOut1 {
-        from {
-          opacity: 1;
-        }
-        to {
-          opacity: 0;
-        }
-      }
-
-      .animation-2 {
-        animation: fadeIn1 5s forwards;
-      }
-
-      .animation-3 {
-        animation: fadeOut1 5s forwards;
-      }
-
-      #episode-text {
-        font-family: "StoryFont";
-        display: none;
-        position: absolute;
-        max-width: 70rem;
-        color: white;
-        margin: 0 auto;
-        line-height: 1.6;
-        font-size: 1em;
-        left: 40%;
-        top: 9%;
-      }
-      #episode-title {
-        font-size: 2em;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-      .blue-text {
-        color: #00bfff;
-      }
-
-      .typing-effect {
-        font-size: 1em;
-        border-right: none;
-        white-space:unset;
-        overflow: hidden;
-        width: 0;
-        animation: typing 4s steps(40) forwards, blink 0.1s infinite;
-      }
-
-      @keyframes typing {
-        to {
-          width: 100%;
-        }
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
-      }
     </style>
   </head>
   <body>
     <button class="close-button" aria-label="Close" id="close_overlay"></button>
     <header class="animated-header" id="header">
+      <img src="logo.png" id="logo-image" />
       <img src="starship.png" alt="Header Image" id="header-image" />
       <div class="nav-links" id="main-nav-links">
         <div class="dropdown">
@@ -253,25 +66,32 @@
           </div>
         </div>
         <div class="dropdown">
-          <a href="#" class="nav-link">Cast</a>
+          <a href="#" class="nav-link" id="quiz">Quiz</a>
         </div>
         <div class="dropdown">
-          <a href="#" class="nav-link">Awards</a>
+          <a href="#" class="nav-link" if="game">Test your Force!</a>
         </div>
-
         <div class="dropdown">
-          <a href="#" class="nav-link">Arts</a>
+          <a href="#" class="nav-link">Posters</a>
         </div>
       </div>
     </header>
 
     <div id="episode-text">
       <div id="episode-title"></div>
-      <div id="episode-content" class="typing-effect"></div>
+      <div id="episode-content" class="typing-effect"> </div>
     </div>
-  
+
+    <div id="quiz-text">
+      <div id="quiz-title" class="typing-effect">
+        Hmmm… Young one, a challenge for your mind, I offer.</br>
+        A quiz of knowledge, in the galaxy far, far away.</br>
+        Test your wisdom, will you? The stories of the Jedi, the Sith, and the Skywalkers await you.</div>
+      <div id="quiz-content" class="typing-effect">TEST</div>
+    </div>
 
     <script type="module" src="./src/main.js"></script>
+
     <script>
       document
         .querySelectorAll(".nav-item.dropdown > .nav-link")
@@ -282,10 +102,13 @@
             dropdownMenu.classList.toggle("show");
           });
         });
-      document.getElementById("header-image").classList.add("animation-ship-1");
+      document
+        .getElementById("header-image")
+        .classList.add("animation-start-ship-1");
       document
         .getElementById("main-nav-links")
         .classList.add("animation-links-1");
+      document.getElementById("logo-image").classList.add("animation-links-1");
     </script>
   </body>
 </html>

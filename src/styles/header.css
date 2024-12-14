@@ -1,0 +1,133 @@
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 10;
+}
+
+#header-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    transform: translate(-100%, -100%);
+
+}
+
+#logo-image {
+    opacity: 0;
+    width: 20%;
+    max-width: 10%;
+    top: 10%;
+    left: 80%;
+    position: absolute;
+}
+
+.animation-start-ship-1 {
+    animation: slide-in 7s 10s ease forwards, moveShip 5s 18s infinite ease-in-out;
+}
+
+.animation-move-ship-1 {
+    animation: moveShip 5s infinite ease-in-out;
+}
+
+.animation-ship-1 {
+    animation: slide-in 7s ease forwards;
+}
+
+.animation-ship-2 {
+    animation: fadeIn 5s forwards, moveShip 5s infinite ease-in-out;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1rem;
+    opacity: 0;
+}
+
+.animation-links-1 {
+    animation: fade-in 1.5s 17s ease forwards;
+}
+
+.nav-links a {
+    font-family: "Jedi_Outline";
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 1rem 1rem;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+@keyframes slide-in {
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes moveShip {
+    0% {
+        transform: translateX(0%);
+    }
+
+    50% {
+        transform: translateX(1vw) translateY(1vh);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    font-size: 1rem;
+    min-width: 13rem;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.animation-2 {
+    animation: fadeIn 5s forwards;
+}
+
+.animation-3 {
+    animation: fadeOut 0.5s forwards;
+}

@@ -12,7 +12,9 @@
     "vite": "^6.0.1"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^25.0.0",
     "gsap": "^3.12.5",
+    "photoswipe": "^5.4.4",
     "three": "^0.171.0",
     "winbox": "^0.2.82"
   }

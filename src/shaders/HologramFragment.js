@@ -1,5 +1,7 @@
 export default /*glsl*/ `
     uniform float time;
+    uniform float color_1;
+    uniform float color_2;
     varying vec2 vUv;
 
     
@@ -19,7 +21,7 @@ export default /*glsl*/ `
         stripes = smoothstep(0.1, 0.7, stripes);
 
         // Голубой цвет с учетом полосок
-        vec3 blueColor = vec3(0.3, 0.3, 1.0) * (stripes + 0.05);
+        vec3 blueColor = vec3(color_1, color_2, 1.0) * (stripes + 0.05);
 
         // Итоговый цвет с прозрачностью
         gl_FragColor = vec4(blueColor, gradient * 0.8);
