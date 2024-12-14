@@ -7,9 +7,8 @@ function loadFont(url) {
     return new Promise((resolve, reject) => {
         loader.load(
             url,
-            (font) => resolve(font),  // Успешная загрузка
-            undefined,                // Прогресс (необязательно)
-            (error) => reject(error)  // Ошибка загрузки
+            (font) => resolve(font),      
+            (error) => reject(error)
         );
     });
 }
@@ -60,7 +59,7 @@ export function createTitles(scene) {
                 const textGeometry = new TextGeometry(line, {
                     font: font,
                     size: 0.5,
-                    height: 0,
+                    depth: 0,
                     curveSegments: 12,
                     bevelEnabled: false,
                 });

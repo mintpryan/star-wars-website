@@ -9,9 +9,9 @@ function loadTexture(url) {
     return new Promise((resolve, reject) => {
         loader.load(
             url,
-            (texture) => resolve(texture),  // Успешная загрузка
-            undefined,                // Прогресс (необязательно)
-            (error) => reject(error)  // Ошибка загрузки
+            (texture) => resolve(texture),  
+            undefined,                
+            (error) => reject(error)  
         );
     });
 }
@@ -27,14 +27,14 @@ export async function createTextureImage(url, position, isAlbom = false, size, t
         const imageHeight = texture.image.height;
         const aspectRatio = imageWidth / imageHeight;
 
-        let planeWidth; // Вы можете задать любую высоту
+        let planeWidth; 
         let planeHeight;
         if (isAlbom) {
-            planeWidth = size; // Вы можете задать любую высоту
+            planeWidth = size; 
             planeHeight = planeWidth * aspectRatio;
         } else {
-            planeHeight = size; // Вы можете задать любую высоту
-            planeWidth = planeHeight * aspectRatio;
+            planeHeight = size; 
+            planeWidth = planeHeight/ aspectRatio;
         }
         uniforms.uTexture = { value: texture }
         const planeGeometry = new THREE.PlaneGeometry(planeHeight, planeWidth);

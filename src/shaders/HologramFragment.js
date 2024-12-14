@@ -19,7 +19,7 @@ export default /*glsl*/ `
         stripes = smoothstep(0.1, 0.7, stripes);
 
         // Голубой цвет с учетом полосок
-        vec3 blueColor = vec3(0.4, 0.3, 1.0) * (stripes + 0.05);
+        vec3 blueColor = vec3(0.3, 0.3, 1.0) * (stripes + 0.05);
 
         // Итоговый цвет с прозрачностью
         gl_FragColor = vec4(blueColor, gradient * 0.8);
