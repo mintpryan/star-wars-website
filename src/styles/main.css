@@ -109,7 +109,7 @@
 
 #quiz-text {
     font-family: "QuizFont";
-
+    display: none;
     max-width: 70%;
     color: white;
     margin: 0 auto;

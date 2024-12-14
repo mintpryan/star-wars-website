@@ -35,9 +35,9 @@ const episodeGroup = new THREE.Group()
 const quizGroup = new THREE.Group()
 
 let currentGroup = mainGroup;
-currentGroup.visible = false;
+currentGroup.visible = true;
 episodeGroup.visible = false
-quizGroup.visible = true
+quizGroup.visible = false
 episodeGroup.position.set(0, 0, -20)
 scene.add(mainGroup)
 scene.add(episodeGroup)
@@ -238,17 +238,17 @@ function hideHeader() {
 }
 
 
-hideHeader()
-  createQuiz(quizGroup)
-  switchGroup(quizGroup);
-  document.getElementById('close_overlay').style.display = 'block'
-  document
-    .getElementById("episode-text").style.display = 'block'
-  document
-    .getElementById("episode-content").innerHTML += episodes_text[link.id].story
-  document
-    .getElementById("episode-title").textContent = episodes_text[link.id].title
-  document.getElementById('header').style.display = 'none'
-  document.getElementById("main-nav-links").classList.remove('animation-3');
-  document.getElementById("header-image").classList.remove('animation-3');
-  document.getElementById("logo-image").classList.remove('animation-3');
+// hideHeader()
+//   createQuiz(quizGroup)
+//   switchGroup(quizGroup);
+//   document.getElementById('close_overlay').style.display = 'block'
+//   document
+//     .getElementById("episode-text").style.display = 'block'
+//   document
+//     .getElementById("episode-content").innerHTML += episodes_text[link.id].story
+//   document
+//     .getElementById("episode-title").textContent = episodes_text[link.id].title
+//   document.getElementById('header').style.display = 'none'
+//   document.getElementById("main-nav-links").classList.remove('animation-3');
+//   document.getElementById("header-image").classList.remove('animation-3');
+//   document.getElementById("logo-image").classList.remove('animation-3');
