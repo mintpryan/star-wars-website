@@ -307,3 +307,12 @@ canvas#gameCanvas {
     color: #ffffff;
     border-color: #e8014a;
 }
+
+#footer-image {
+    opacity: 0;
+    width: 20%;
+    max-width: 10%;
+    bottom: 10%;
+    left: 80%;
+    position: absolute;
+}

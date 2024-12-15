@@ -37,7 +37,7 @@ const episodeGroup = new THREE.Group()
 const quizGroup = new THREE.Group()
 
 let currentGroup = mainGroup;
-currentGroup.visible = false;
+currentGroup.visible = true;
 episodeGroup.visible = false
 quizGroup.visible = false
 episodeGroup.position.set(0, 0, -20)
