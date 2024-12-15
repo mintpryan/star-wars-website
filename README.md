@@ -2,7 +2,7 @@
 Codedex Holiday Hackathon 2024
 
 This project is an interactive web application that showcases the Star Wars universe's story, lets you play quizzes about it, and includes some old Flash-like games.
-🛸 **Live Demo:** [Star Wars Codedex on Netlify](https://star-wars-codedex.netlify.app/)
+🛸 **Live Demo:** [Star Wars on Netlify](https://star-wars-codedex.netlify.app/)
 
 ---
 
@@ -18,23 +18,16 @@ This project is an interactive web application that showcases the Star Wars univ
 
 Follow these steps to run the project locally.
 
-### Prerequisites
-
-Make sure you have the following installed on your machine:
-
-- **Node.js** (version 16 or higher)
-- **npm** (comes with Node.js)
-
 ### Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/mintpryan/BoardGameCafeWebsite.git
+   git clone https://github.com/mintpryan/star-wars-website.git
    ```
 
 2. **Navigate to the project directory:**
    ```bash
-   cd BoardGameCafeWebsite
+   cd star-wars-website
    ```
 
 3. **Install dependencies:**
@@ -54,10 +47,7 @@ Make sure you have the following installed on your machine:
 
 ## 📝 Scripts
 
-- **`npm run dev`** - Run the project in development mode.
-- **`npm run build`** - Build the project for production.
-- **`npm run preview`** - Preview the production build.
-
+- **`npm run dev`** - Run the project in development mode
 
 ---
 
