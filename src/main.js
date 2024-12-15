@@ -12,6 +12,8 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { createQuiz } from './quiz/createQuiz';
+import { createGame } from './createRaceGame';
+
 
 
 let episodes_meshes = {};
@@ -35,7 +37,7 @@ const episodeGroup = new THREE.Group()
 const quizGroup = new THREE.Group()
 
 let currentGroup = mainGroup;
-currentGroup.visible = true;
+currentGroup.visible = false;
 episodeGroup.visible = false
 quizGroup.visible = false
 episodeGroup.position.set(0, 0, -20)
@@ -85,7 +87,7 @@ window.addEventListener('resize', () => {
 });
 
 document.querySelectorAll(".story").forEach((link) => {
-  
+
   link.addEventListener('click', () => {
 
     const episode = episodes_meshes[link.id]
@@ -127,6 +129,25 @@ document.getElementById("quiz").addEventListener('click', () => {
   document.getElementById('header').style.pointerEvents = 'none'
 })
 
+document.getElementById("game").addEventListener('click', () => {
+
+  hideHeader()
+  createGame()
+
+
+  document
+    .getElementById("game-container").style.display = 'block'
+  document
+    .getElementById("gameCanvas").style.display = 'flex'
+
+  document.getElementById('header').style.display = 'none'
+  document.getElementById("main-nav-links").classList.remove('animation-3');
+  document.getElementById("header-image").classList.remove('animation-3');
+  document.getElementById("logo-image").classList.remove('animation-3');
+  document.getElementById('header').style.pointerEvents = 'none'
+})
+
+
 document.getElementById('close_overlay').addEventListener('click', (e) => {
   episodeGroup.clear()
   episodeGroup.visible = false
@@ -142,9 +163,11 @@ document.getElementById('close_overlay').addEventListener('click', (e) => {
   document.getElementById('close_overlay').style.display = 'none'
   document
     .getElementById("episode-text").style.display = 'none'
-      document
+  document
     .getElementById("quiz-text").style.display = 'none'
-  
+  document
+    .getElementById("episode-content").innerHTML = ""
+
   document.getElementById('header').style.pointerEvents = 'auto'
 
 })
@@ -182,25 +205,7 @@ const spaceship_3 = new Spaceship(scene, {
 
 ships.push(spaceship, spaceship_2, spaceship_3)
 
-function animate() {
-  titles.forEach(el => {
-    el.animate()
-  })
 
-  requestAnimationFrame(animate);
-
-  uniforms.time.value += 0.05;
-  renderer.render(scene, camera);
-
-  setTimeout(() => {
-    ships.forEach(spaceship => {
-      spaceship.setVisible(true)
-      spaceship.animate();
-    })
-  }, 20000)
-
-}
-animate();
 
 function switchGroup(newGroup) {
   if (currentGroup === newGroup) return;
@@ -241,8 +246,22 @@ function hideHeader() {
 
 }
 
+function animate() {
+  titles.forEach(el => {
+    el.animate()
+  })
 
-// hideHeader()
-// createQuiz(quizGroup)
-// switchGroup(quizGroup);
-// document.getElementById('header').style.pointerEvents = 'none'
+  requestAnimationFrame(animate);
+
+  uniforms.time.value += 0.05;
+  renderer.render(scene, camera);
+
+  setTimeout(() => {
+    ships.forEach(spaceship => {
+      spaceship.setVisible(true)
+      spaceship.animate();
+    })
+  }, 20000)
+
+}
+animate();

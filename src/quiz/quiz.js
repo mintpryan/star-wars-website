@@ -1,7 +1,6 @@
 export const quiz = {
     "start_title": `Hmmm… Young one, a challenge for your mind, I offer.</br>
-        A quiz of knowledge, in the galaxy far, far away.</br>
-        Test your wisdom, will you? The stories of the Jedi, the Sith, and the Skywalkers await you.`,
+        A quiz of knowledge, in the galaxy far, far away.`,
     "quiz": [
         {
             "question": "Young Skywalker’s first mentor, who was he? Before the wise Kenobi, hmm?",

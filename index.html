@@ -46,6 +46,13 @@
       canvas {
         display: block;
       }
+
+     
+
+
+
+
+
     </style>
   </head>
   <body>
@@ -69,7 +76,7 @@
           <a href="#" class="nav-link" id="quiz">Quiz</a>
         </div>
         <div class="dropdown">
-          <a href="#" class="nav-link" if="game">Test your Force!</a>
+          <a href="#" class="nav-link" id="game">Test your Force!</a>
         </div>
         <div class="dropdown">
           <a href="#" class="nav-link">Posters</a>
@@ -86,7 +93,7 @@
       <div id="quiz-title" class="animation-2">
         Hmmm… Young one, a challenge for your mind, I offer.</br>
         A quiz of knowledge, in the galaxy far, far away.</br>
-        Test your wisdom, will you? The stories of the Jedi, the Sith, and the Skywalkers await you.</div>
+</div>
       <div class="quiz-content" id="quiz-content-start" >
         <button class="quiz-button" id="quiz-start">LET'S START</button>
       </div>
@@ -107,9 +114,17 @@
       </div>
     </div>
   </div>
+</div>
+
+<div id = 'game-container'>
+  <canvas id="gameCanvas"></canvas>
+</div>
+<button id="restartButton" class="game-button">Restart</button>
+<button id="close" class="game-button">Close</button>
+
+
 
     <script type="module" src="./src/main.js"></script>
-
     <script>
       document
         .querySelectorAll(".nav-item.dropdown > .nav-link")

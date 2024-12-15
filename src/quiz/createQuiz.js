@@ -48,6 +48,7 @@ export function createQuiz(scene) {
 }
 
 
+
 function createRoundedPlane(width, height, radius) {
     const shape = new THREE.Shape();
 
