@@ -28,7 +28,7 @@ export class Spaceship {
             },
             undefined,
             (error) => {
-                console.error('Ошибка загрузки корабля:', error);
+                console.error('Error:', error);
             }
         );
     }

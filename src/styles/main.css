@@ -361,28 +361,3 @@ canvas#gameCanvas {
 }
 
 
-.flying-ship {
-    background: transparent;
-    position: absolute;
-    width: 6rem;
-    height: auto;
-    bottom: 20%;
-    left: -20%;
-}
-
-@keyframes flyArc {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      50% {
-        transform: translate(0, 20vh) rotate(-90deg);
-      }
-      100% {
-        transform: translate(200vw, 0) rotate(-90deg);
-      }
-}
-
-.flying-ship {
-    animation: flyArc 10s 6s ease-in-out forwards;
-    animation-delay: 60s;
-}
