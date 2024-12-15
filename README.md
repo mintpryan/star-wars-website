@@ -58,12 +58,6 @@ Make sure you have the following installed on your machine:
 - **`npm run build`** - Build the project for production.
 - **`npm run preview`** - Preview the production build.
 
----
-
-## 📸 Screenshots
-
-![Screenshot 1](link-to-screenshot-1.png)
-![Screenshot 2](link-to-screenshot-2.png)
 
 ---
 
