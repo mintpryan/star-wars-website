@@ -95,6 +95,7 @@ export function createTitles(scene) {
 
                     setTimeout(() => {
                         textMesh.material.opacity = textMesh.material.opacity - 0.02
+                        document.getElementById('header').style.pointerEvents = 'auto'
                         
                     }, 11000)
 
