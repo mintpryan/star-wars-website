@@ -8,6 +8,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    z-index: 3;
 }
 
 .close-button::before,
@@ -115,6 +116,7 @@
     margin: 0 auto;
     line-height: 1.6;
     font-size: 1em;
+    z-index: 1;
 
 }
 
@@ -126,6 +128,7 @@
     left: 35%;
     top: 10%;
     max-width: 50%;
+    z-index: 1;
 }
 
 #quiz-content {
@@ -139,6 +142,7 @@
     max-width: 70%;
     width: 70%;
     width: 100%;
+    z-index: 1;
 }
 
 #quiz-content-start {
@@ -155,6 +159,7 @@
     width: 70%;
     align-items: center;
     justify-content: space-around;
+    z-index: 1;
 }
 
 
@@ -173,6 +178,7 @@
     transition: all 0.2s ease;
     outline: none;
     top: 50%;
+    z-index: 3;
 }
 
 .quiz-button:active {
@@ -207,7 +213,9 @@
     display: flex;
     flex-direction: column;
 }
-
+#quiz-start{
+    z-index: 3;
+}
 #quiz-game {
     display: none;
     flex-direction: column;
@@ -243,7 +251,7 @@
 
     display: none;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     color: #fff;
     text-align: center;
     margin-top: 50px;
@@ -257,7 +265,6 @@ canvas#gameCanvas {
     width: 50vw;
     height: 100vh;
     background-color: transparent;
-    z-index: 1;
     pointer-events: none;
 
 }
@@ -277,6 +284,7 @@ canvas#gameCanvas {
     position: absolute;
     width: 13rem;
     display: none;
+    z-index: 3;
 
 }
 
@@ -315,4 +323,66 @@ canvas#gameCanvas {
     bottom: 10%;
     left: 80%;
     position: absolute;
+}
+
+.poster-grid {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem;
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+}
+
+.poster-item {
+    text-align: center;
+    background: transparent;
+}
+
+.poster-item img {
+    width: 80%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: transparent;
+}
+
+.poster-item p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #fff;
+    font-family: "QuizFont";
+    background: transparent;
+}
+
+
+.flying-ship {
+    background: transparent;
+    position: absolute;
+    width: 6rem;
+    height: auto;
+    bottom: 20%;
+    left: -20%;
+}
+
+@keyframes flyArc {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        transform: translate(0, 20vh) rotate(-90deg);
+      }
+      100% {
+        transform: translate(200vw, 0) rotate(-90deg);
+      }
+}
+
+.flying-ship {
+    animation: flyArc 10s 6s ease-in-out forwards;
+    animation-delay: 60s;
 }

@@ -27,8 +27,8 @@ export function createGame() {
         canvas.height = window.innerHeight;
     });
 
-    const shipWidth = 50
-    const shipHeight = 100
+    const shipWidth = 80
+    const shipHeight = 120
     let shipX = canvas.width / 2 - shipWidth;
     let shipY = canvas.height / 2 - shipHeight + 10;
     let shipSpeed = 5;
@@ -148,7 +148,7 @@ export function createGame() {
         score = 0;
         gameOver = false;
         restartButton.style.display = "none";
-        closeButton.style.display = "none";
+        // closeButton.style.display = "none";
         gameLoop();
     }
 
@@ -187,6 +187,8 @@ export function createGame() {
     };
 
     closeButton.addEventListener("click", () => {
+          document
+    .getElementById("close").style.display = 'none'
         document
         .getElementById("game-container").style.display = 'none'
       document

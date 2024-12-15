@@ -32,7 +32,6 @@ export function createQuiz(scene) {
     plane_2.rotation.z = Math.PI
     scene.add(plane)
     scene.add(plane_1)
-
     scene.add(plane_2)
 
 
@@ -46,8 +45,6 @@ export function createQuiz(scene) {
 
 
 }
-
-
 
 function createRoundedPlane(width, height, radius) {
     const shape = new THREE.Shape();

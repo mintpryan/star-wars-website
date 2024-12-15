@@ -46,16 +46,12 @@
       canvas {
         display: block;
       }
-
-     
-
-
-
-
-
     </style>
   </head>
   <body>
+    <div class="ship-container">
+      <img src="effects/ship_1.png" alt="Ship" class="flying-ship" />
+    </div>
     <button class="close-button" aria-label="Close" id="close_overlay"></button>
     <header class="animated-header" id="header">
       <img src="logo.png" id="logo-image" />
@@ -79,7 +75,7 @@
           <a href="#" class="nav-link" id="game">Test your Force!</a>
         </div>
         <div class="dropdown">
-          <a href="#" class="nav-link">Posters</a>
+          <a href="#" class="nav-link" id="posters">Posters</a>
         </div>
       </div>
     </header>
@@ -121,8 +117,34 @@
 </div>
 <button id="restartButton" class="game-button">Restart</button>
 <button id="close" class="game-button">Close</button>
+<div class="poster-grid" id ="poster-grid">
+  <div class="poster-item">
+    <img src="/posters/ep_1.jpeg" alt="Episode I Poster">
+    <p>Episode I: The Phantom Menace</p>
+  </div>
+  <div class="poster-item">
+    <img src="/posters/ep_2.jpeg" alt="Episode II Poster">
+    <p>Episode II: Attack of the Clones</p>
+  </div>
+  <div class="poster-item">
+    <img src="/posters/ep_3.jpeg" alt="Episode III Poster">
+    <p>Episode III: Revenge of the Sith</p>
+  </div>
+  <div class="poster-item">
+    <img src="/posters/ep_4.jpeg" alt="Episode IV Poster">
+    <p>Episode IV: A New Hope</p>
+  </div>
+  <div class="poster-item">
+    <img src="/posters/ep_5.jpeg" alt="Episode V Poster">
+    <p>Episode V: The Empire Strikes Back</p>
+  </div>
+  <div class="poster-item">
+    <img src="/posters/ep_6.jpeg" alt="Episode VI Poster">
+    <p>Episode VI: Return of the Jedi</p>
+  </div>
+</div>
 
-    
+
     <footer>
       <img src="/footer/deathstar.png" id="footer-image" />
     </footer>

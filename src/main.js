@@ -35,15 +35,18 @@ scene.add(light);
 const mainGroup = new THREE.Group()
 const episodeGroup = new THREE.Group()
 const quizGroup = new THREE.Group()
+const postersGroup = new THREE.Group()
 
 let currentGroup = mainGroup;
 currentGroup.visible = true;
 episodeGroup.visible = false
 quizGroup.visible = false
+postersGroup.visible = false
 episodeGroup.position.set(0, 0, -20)
 scene.add(mainGroup)
 scene.add(episodeGroup)
 scene.add(quizGroup)
+scene.add(postersGroup)
 createBackground(renderer, scene, camera)
 const titles = createTitles(mainGroup)
 let uniforms = {
@@ -105,10 +108,13 @@ document.querySelectorAll(".story").forEach((link) => {
     document
       .getElementById("episode-title").textContent = episodes_text[link.id].title
     document.getElementById('header').style.display = 'none'
+    document.getElementById("footer-image").style.display = 'none'
     document.getElementById("main-nav-links").classList.remove('animation-3');
     document.getElementById("header-image").classList.remove('animation-3');
     document.getElementById("logo-image").classList.remove('animation-3');
+    document.getElementById("footer-image").classList.remove('animation-3');
     document.getElementById('header').style.pointerEvents = 'none'
+
   })
 });
 
@@ -123,9 +129,11 @@ document.getElementById("quiz").addEventListener('click', () => {
     .getElementById("quiz-text").style.display = 'flex'
   document.getElementById("quiz-text").classList.add('animation-2')
   document.getElementById('header').style.display = 'none'
+  document.getElementById("footer-image").style.display = 'none'
   document.getElementById("main-nav-links").classList.remove('animation-3');
   document.getElementById("header-image").classList.remove('animation-3');
   document.getElementById("logo-image").classList.remove('animation-3');
+  document.getElementById("footer-image").classList.remove('animation-3');
   document.getElementById('header').style.pointerEvents = 'none'
 })
 
@@ -133,10 +141,10 @@ document.getElementById("game").addEventListener('click', () => {
 
   hideHeader()
   createGame()
-
-
   document
     .getElementById("game-container").style.display = 'block'
+  document
+    .getElementById("close").style.display = 'block'
   document
     .getElementById("gameCanvas").style.display = 'flex'
 
@@ -144,21 +152,44 @@ document.getElementById("game").addEventListener('click', () => {
   document.getElementById("main-nav-links").classList.remove('animation-3');
   document.getElementById("header-image").classList.remove('animation-3');
   document.getElementById("logo-image").classList.remove('animation-3');
+  document.getElementById("footer-image").classList.remove('animation-3');
   document.getElementById('header').style.pointerEvents = 'none'
 })
+
+
+document.getElementById('posters').addEventListener('click', () => {
+  hideHeader()
+  postersGroup.add(plane);
+  switchGroup(postersGroup);
+  document.getElementById('close_overlay').style.display = 'block'
+  document.getElementById('poster-grid').style.display = 'grid'
+  document.getElementById('header').style.display = 'none'
+  document.getElementById("footer-image").style.display = 'none'
+  document.getElementById("main-nav-links").classList.remove('animation-3');
+  document.getElementById("header-image").classList.remove('animation-3');
+  document.getElementById("logo-image").classList.remove('animation-3');
+  document.getElementById("footer-image").classList.remove('animation-3');
+  document.getElementById('header').style.pointerEvents = 'none'
+
+})
+
 
 
 document.getElementById('close_overlay').addEventListener('click', (e) => {
   episodeGroup.clear()
   episodeGroup.visible = false
   quizGroup.visible = false
+  quizGroup.clear()
   mainGroup.visible = true
+  postersGroup.visible = false
   currentGroup = mainGroup
   document.getElementById('header').style.display = 'flex'
+  document.getElementById("footer-image").style.display = 'block'
 
   document.getElementById("header-image").style.transform = 'none'
   document.getElementById("header-image").classList.add('animation-ship-2');
   document.getElementById("logo-image").classList.add('animation-2');
+  document.getElementById("footer-image").classList.add('animation-2');
   document.getElementById("main-nav-links").classList.add('animation-2')
   document.getElementById('close_overlay').style.display = 'none'
   document
@@ -169,6 +200,8 @@ document.getElementById('close_overlay').addEventListener('click', (e) => {
     .getElementById("episode-content").innerHTML = ""
 
   document.getElementById('header').style.pointerEvents = 'auto'
+  document
+    .getElementById("poster-grid").style.display = 'none'
 
 })
 
@@ -239,10 +272,12 @@ function hideHeader() {
   document.getElementById("main-nav-links").classList.remove('animation-links-1')
   document.getElementById("header-image").classList.remove('animation-start-ship-1');
   document.getElementById("logo-image").classList.remove('animation-links-1');
+  document.getElementById("footer-image").classList.remove('animation-links-1');
 
   document.getElementById("main-nav-links").classList.add('animation-3');
   document.getElementById("header-image").classList.add('animation-3');
   document.getElementById("logo-image").classList.add('animation-3');
+  document.getElementById("footer-image").classList.add('animation-3');
 
 }
 
@@ -256,12 +291,13 @@ function animate() {
   uniforms.time.value += 0.05;
   renderer.render(scene, camera);
 
-  setTimeout(() => {
+  setInterval(() => {
     ships.forEach(spaceship => {
       spaceship.setVisible(true)
       spaceship.animate();
+
     })
-  }, 20000)
+  }, 30000)
 
 }
 animate();
