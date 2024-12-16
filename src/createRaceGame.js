@@ -230,11 +230,11 @@ document.addEventListener('DOMContentLoaded', fetchTopScores);
 
 async function submitScoreAndUpdateLeaderboard(name, score) {
     try {
-        const response = await fetch('/.netlify/functions/save-score', {
+        const response =  await fetch('/.netlify/functions/save-score', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, score }),
-        });
+            body: JSON.stringify({ name: name, score:score }),
+          });
 
         const result = await response.json();
         console.log(result.message);
@@ -263,4 +263,6 @@ async function fetchTopScores() {
       console.error('Error fetching top scores:', error);
     }
   }
+  
+
   

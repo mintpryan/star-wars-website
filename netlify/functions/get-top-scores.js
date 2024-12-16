@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async () => {
-  const filePath = path.resolve(__dirname, 'scores.json');
+  const filePath = path.resolve('/tmp', 'scores.json');
 
   try {
     let scores = [];
