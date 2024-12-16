@@ -114,8 +114,9 @@ export function createGame() {
     function gameLoop() {
         if (gameOver) {
             ctx.fillStyle = "#fff";
-            ctx.font = "30px Arial";
-            ctx.fillText("GAME OVER", canvas.width / 4, canvas.height / 2);
+            ctx.font = "2rem Arial";
+            ctx.fillText(`GAME OVER\n Your score: ${score}`, canvas.width / 4, canvas.height / 2);
+            submitScore('Player1', score);
             return;
         }
 
@@ -148,7 +149,6 @@ export function createGame() {
         score = 0;
         gameOver = false;
         restartButton.style.display = "none";
-        // closeButton.style.display = "none";
         gameLoop();
     }
 
