@@ -115,8 +115,9 @@ export function createGame() {
         if (gameOver) {
             ctx.fillStyle = "#fff";
             ctx.font = "2rem Arial";
-            ctx.fillText(`GAME OVER\n Your score: ${score}`, canvas.width / 4, canvas.height / 2);
-            submitScore('Player1', score);
+            ctx.fillText(`GAME OVER`, canvas.width / 4, canvas.height / 2);
+            ctx.fillText(`Your score: ${score}`, canvas.width / 4, canvas.height * 0.3);
+            submitScoreAndUpdateLeaderboard('Player1', score);
             return;
         }
 
@@ -187,12 +188,12 @@ export function createGame() {
     };
 
     closeButton.addEventListener("click", () => {
-          document
-    .getElementById("close").style.display = 'none'
         document
-        .getElementById("game-container").style.display = 'none'
-      document
-        .getElementById("gameCanvas").style.display = 'none'
+            .getElementById("close").style.display = 'none'
+        document
+            .getElementById("game-container").style.display = 'none'
+        document
+            .getElementById("gameCanvas").style.display = 'none'
         document.getElementById('header').style.display = 'flex'
         document.getElementById("header-image").style.transform = 'none'
         document.getElementById("header-image").classList.add('animation-ship-2');
@@ -203,3 +204,63 @@ export function createGame() {
     });
 }
 
+async function submitScore(name, score) {
+    const formData = new FormData();
+    formData.append('form-name', 'score-form');
+    formData.append('name', name);
+    formData.append('score', score);
+
+    try {
+        const response = await fetch('/', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            console.log('Score submitted successfully!');
+        } else {
+            console.error('Error submitting score');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', fetchTopScores);
+
+async function submitScoreAndUpdateLeaderboard(name, score) {
+    try {
+        const response = await fetch('/.netlify/functions/save-score', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, score }),
+        });
+
+        const result = await response.json();
+        console.log(result.message);
+
+        await fetchTopScores();
+    } catch (error) {
+        console.error('Error submitting score:', error);
+    }
+}
+
+
+async function fetchTopScores() {
+    try {
+      const response = await fetch('/.netlify/functions/get-top-scores');
+      const topScores = await response.json();
+  
+      const leaderboard = document.getElementById('leaderboard');
+      leaderboard.innerHTML = '';
+  
+      topScores.forEach((entry, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${index + 1}. ${entry.name} - ${entry.score}`;
+        leaderboard.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error('Error fetching top scores:', error);
+    }
+  }
+  

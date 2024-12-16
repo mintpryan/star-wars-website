@@ -213,9 +213,11 @@
     display: flex;
     flex-direction: column;
 }
-#quiz-start{
+
+#quiz-start {
     z-index: 3;
 }
+
 #quiz-game {
     display: none;
     flex-direction: column;
@@ -254,7 +256,16 @@
     z-index: 2;
     color: #fff;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 4rem;
+}
+
+#score-container {
+    left: 5%;
+    top: 10%;
+    position: relative;
+    font-size: 1rem;
+    font-family: "QuizFont";
+    display: flex;
 }
 
 canvas#gameCanvas {
@@ -359,5 +370,3 @@ canvas#gameCanvas {
     font-family: "QuizFont";
     background: transparent;
 }
-
-

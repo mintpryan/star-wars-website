@@ -303,26 +303,3 @@ function animate() {
 animate();
 
 
-async function submitScore(name, score) {
-  const formData = new FormData();
-  formData.append('form-name', 'score-form');
-  formData.append('name', name);
-  formData.append('score', score);
-
-  try {
-    const response = await fetch('/', {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (response.ok) {
-      console.log('Score submitted successfully!');
-    } else {
-      console.error('Error submitting score');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-
