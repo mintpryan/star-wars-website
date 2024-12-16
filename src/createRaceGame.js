@@ -118,6 +118,8 @@ export function createGame() {
             ctx.fillText(`GAME OVER`, canvas.width / 4, canvas.height / 2);
             ctx.fillText(`Your score: ${score}`, canvas.width / 4, canvas.height * 0.3);
             submitScore('Player1', score);
+            fetchTopScores()
+
             return;
         }
 
