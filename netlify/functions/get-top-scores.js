@@ -11,11 +11,9 @@ exports.handler = async () => {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // ID вашей таблицы (скопируйте из URL)
     const spreadsheetId = process.env.SPREADSHEET_ID;
-
-    // Чтение данных из таблицы
-    const range = 'Sheet1!A2:C'; // Диапазон, где хранятся данные (пропускаем заголовки)
+    
+    const range = 'Sheet1!A2:C';
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
@@ -42,6 +40,7 @@ exports.handler = async () => {
     return {
       statusCode: 200,
       body: JSON.stringify(topScores),
+      
     };
   } catch (error) {
     console.error('Error:', error);

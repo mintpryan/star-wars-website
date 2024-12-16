@@ -208,45 +208,46 @@ document.addEventListener('DOMContentLoaded', fetchTopScores);
 
 async function submitScore(name, score) {
     try {
-      const response = await fetch('/.netlify/functions/save-score', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, score }),
-      });
-  
-      const result = await response.json();
-      console.log(result.message);
+        const response = await fetch('/.netlify/functions/save-score', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, score }),
+        });
+
+        const result = await response.json();
+        console.log(result.message);
     } catch (error) {
-      console.error('Error submitting score:', error);
+        console.error('Error submitting score:', error);
     }
-  }
-  
+}
 
 
-  
 
-  async function fetchTopScores() {
+
+
+
+async function fetchTopScores() {
     try {
-      const response = await fetch('/.netlify/functions/get-top-scores');
-      if (!response.ok) {
-        throw new Error('Failed to fetch top scores');
-      }
-  
-      const topScores = await response.json();
-  
-      const leaderboard = document.getElementById('leaderboard');
-      leaderboard.innerHTML = ''; 
-  
-      topScores.forEach((entry, index) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
-        leaderboard.appendChild(listItem);
-      });
+        const response = await fetch('/.netlify/functions/get-top-scores');
+        if (!response.ok) {
+            throw new Error('Failed to fetch top scores');
+        }
+
+        const topScores = await response.json();
+
+        const leaderboard = document.getElementById('leaderboard');
+        leaderboard.innerHTML = '';
+
+        topScores.forEach((entry, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
+            leaderboard.appendChild(listItem);
+        });
     } catch (error) {
-      console.error('Error fetching top scores:', error);
-      const leaderboard = document.getElementById('leaderboard');
-      leaderboard.innerHTML = '<li>Error loading top scores</li>';
+        console.error('Error fetching top scores:', error);
+        const leaderboard = document.getElementById('leaderboard');
+        leaderboard.innerHTML = '<li>Error loading top scores</li>';
     }
-  }
-  
-  document.addEventListener('DOMContentLoaded', fetchTopScores);
+}
+
+document.addEventListener('DOMContentLoaded', fetchTopScores);
